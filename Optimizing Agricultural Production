@@ -1,0 +1,70 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from ipywidgets import interact
+
+data=pd.read_csv('Crop_recommendation.csv')
+
+print("Shape of the dataset",data.shape)
+
+data.head()
+
+data.isnull().sum()
+
+data['label'].value_counts()
+
+print("Average value Nitrogen in the Soil : {0:.2f}".format(data['N'].mean()))
+print("Average value of Phosphorous in the Soil : {0:.2f}".format(data['P'].mean()))
+print("Average value of Potassium in the Soil : {0:.2f}".format(data['K'].mean()))
+print("Average value of Calsius in the Soil : {0:.2f}".format(data['temperature'].mean()))
+print("Average value of Humidity in the Soil : {0:.2f}".format(data['humidity'].mean()))
+print("Average ph value of the Soil : {0:.2f}".format(data['ph'].mean()))
+print("Average Rainfall in the Soil : {0:.2f}".format(data['rainfall'].mean()))
+
+#Function to Check the summary statistics for each of the crops
+
+@interact
+def summary(crops=list(data['label'].value_counts().index)):
+    x=data[data['label']==crops]
+    print("-----------------------------------------")
+    print("Statistics for Nitrogen")
+    print("Minimum Nitrogen required: ",x['N'].min())
+    print("Average Nitrogen required: ",x['N'].mean())
+    print("Maximum Nitrogen required: ",x['N'].max())
+    
+    print("-----------------------------------------")
+    print("Statistics for Phosphorous")
+    print("Minimum Phosphorous required: ",x['P'].min())
+    print("Average Phosphorous required: ",x['P'].mean())
+    print("Maximum Phosphorous required: ",x['P'].max())
+    
+    print("-----------------------------------------")
+    print("Statistics for Potassium")
+    print("Minimum Potassium required: ",x['K'].min())
+    print("Average Potassium required: ",x['K'].mean())
+    print("Maximum Potassium required: ",x['K'].max())
+    
+    print("-----------------------------------------")
+    print("Statistics for Temperature")
+    print("Minimum Temperature required: ",x['temperature'].min())
+    print("Average Temperature required: ",x['temperature'].mean())
+    print("Maximum Temperature required: ",x['temperature'].max())
+    
+    print("-----------------------------------------")
+    print("Statistics for Humidity")
+    print("Minimum Humidity required: ",x['humidity'].min())
+    print("Average Humidity required: ",x['humidity'].mean())
+    print("Maximum Humidity required: ",x['humidity'].max())
+    print("-----------------------------------------")
+    print("Statistics for PH")
+    print("Minimum PH required: ",x['ph'].min())
+    print("Average PH required: ",x['ph'].mean())
+    print("Maximum PH required: ",x['ph'].max())
+    print("-----------------------------------------")
+    print("Statistics for Rainfall")
+    print("Minimum Rainfall required: ",x['rainfall'].min())
+    print("Average Rainfall required: ",x['rainfall'].mean())
+    print("Maximum Rainfall required: ",x['rainfall'].max())
+    
+    
