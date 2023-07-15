@@ -66,5 +66,13 @@ def summary(crops=list(data['label'].value_counts().index)):
     print("Minimum Rainfall required: ",x['rainfall'].min())
     print("Average Rainfall required: ",x['rainfall'].mean())
     print("Maximum Rainfall required: ",x['rainfall'].max())
-    
+
+#Function to get to know which crops require less or greater than average condition
+    @interact
+def compare(condition=['N','P','K','temperature','ph','humidity','rainfall']):
+    print("Crops which require greater than average",condition,'\n')
+    print(data[data[condition]>data[condition].mean()]['label'].unique())
+    print("--------------------------------------------")
+    print("Crops which require less than average",condition,'\n')
+    print(data[data[condition]<=data[condition].mean()]['label'].unique())
     
